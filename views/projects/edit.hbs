@@ -1,0 +1,76 @@
+<h1 class="display-5">{{title}}</h1>
+{{!available to req.body object}}
+<p>note: separate issues by period followed by space (. )</p>
+<div id="editFormOuter">
+  <div id="editFormInner">
+<form method="POST">
+  {{! Input names have to match the name of the fields in the mongo schema object }}
+  {{! Mapping is not automatic, but it's best practices }}
+  <fieldset class="form-group">
+    <label for="name" class="col-2">Name:</label>
+    <input name="name" id="name" class="form-control" required value="{{project.name}}" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="updateDate" class="col-2">Last Update:</label>
+    <input
+      name="updateDate"
+      id="updateDate"
+      required
+      type="date"
+      value="{{project.updateDate}}" class="form-control"
+    />
+    <input name="updateDate" id="updateDate"
+      required
+      type="time"
+      value="{{project.updateDate}}" class="form-control"/>
+  </fieldset>
+  
+  <fieldset class="form-group">
+    <label for="language">Languages:</label>
+    {{#each languages}}
+      {{createCheckboxElement this.name ../project.language}}
+    {{/each}}
+  </fieldset> 
+  
+  <fieldset class="form-group">
+    <label for="host" class="col-2">Hosting:</label>
+    {{!<input name="host" id="host" required />}}
+    <select name="host" id="host" class="form-control">
+      {{!<option>AWS</option>}}
+      {{#each hosting}}
+      {{!<option>{{this.name}/}</option>}}
+        {{createOptionElement this.name ../project.host}}
+      {{/each}}
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    {{!Dropdown for Status }}
+    <label for="status" class="col-2">Status:</label>
+    <select name="status" id="status" class="form-control">
+      {{!<option>TO DO</option>
+      <option>IN PROGRESS</option>
+      <option>DONE</option>}}
+      {{createOptionElement "Initial Design" project.status}}
+      {{createOptionElement "Needs Funding" project.status}}
+      {{createOptionElement "Under Development" project.status}}
+      {{createOptionElement "Testing" project.status}}
+      {{createOptionElement "Deployed" project.status}}
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="issue" class="col-2">Issues:</label>
+    <input name="issue" id="issue" class="form-control" required value="{{project.issue}}" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="image" class="col-2">Image:</label>
+    <input name="image" id="image" class="form-control" required value="{{project.image}}" />
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="link" class="col-2">Link:</label>
+    <input name="link" id="link" class="form-control" required value="{{project.link}}" />
+  </fieldset>
+  {{! Button needs to be inside <form> element to trigger POST }}
+  <button class="offset-3 btn btn-primary">Save</button>
+</form>
+</div>
+</div>

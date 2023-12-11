@@ -1,0 +1,34 @@
+<h1 class="display-5">{{title}}</h1>
+{{!-- Add links to CRUD operations --}}
+{{#if user}}
+<a class="btn btn-info" href="/hosting/add">Add a new host</a>
+{{/if}}
+
+{{! -- CRUD Functionality-- }}
+
+{{!-- To Show data --}}
+{{!<table class="table table-striped table-hover"></table>}}
+
+<div id="langDiv">
+<table id="langTable">
+  <thead>
+    <th>Name</th>
+  </thead>
+  <tbody>
+  {{#each dataset}}
+    <tr>
+      <td>{{this.name}}</td>
+      {{#if ../user}}
+        <td>
+          <a
+            class="btn btn-danger"
+            href="/hosting/delete/{{this._id}}"
+            onclick="return confirmDeletion()"
+          >Delete</a>
+        </td>
+        {{/if}}
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+</div>
