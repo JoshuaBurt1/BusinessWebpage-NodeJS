@@ -1,3 +1,3 @@
-# landingPage_2
-https://landingpage2jb.azurewebsites.net
+# Essentials Software landing page
+https://essentialsoftware1.azurewebsites.net/
 
