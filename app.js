@@ -15,10 +15,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 //2. DATABASE MongoDB CONNECTIONS
-// Option 1) Hardcode connection string and connect
-//let userName = "userName";
-//let password = "password";
-//let connectionString = `mongodb+srv://${userName}:${password}@week5example.gbih2ue.mongodb.net/week5example`;
 // Option 2) Add connection string to Config file
 const config = require("./config/globals");
 let connectionString = config.db;
@@ -45,7 +41,7 @@ var User = require("./models/user"); //model already contains functionality from
 //Configure session handling
 app.use(
   session({
-    secret: "landingPage_2",
+    secret: "essentialSoftware1",
     resave: false,
     saveUninitialized: false,
   })
@@ -99,38 +95,16 @@ var indexRouter = require("./routes/index");
 var projectsRouter = require("./routes/projects");
 var languagesRouter = require("./routes/languages");
 var hostingRouter = require("./routes/hosting");
-var testingRouter = require("./routes/testing");
 //ROUTING CONFIGURATIONS
 app.use("/", indexRouter);
 //app.use('/users', usersRouter);
 app.use("/projects", projectsRouter);
 app.use("/languages", languagesRouter);
 app.use("/hosting", hostingRouter);
-app.use("/testing", testingRouter);
 
 //HBS Helper Functions -> https://handlebarsjs.com/guide/block-helpers.html#basic-block-variation
 var hbs = require("hbs");
-// Define a custom Handlebars helper to create the checkbox field
-//LANGUAGE HELPER (CREATES CHECKBOX VALUE FROM LANGUAGE MODEL)
-hbs.registerHelper(
-  "createCheckboxElement",
-  function (listValueL, selectedValuesL) {
-    let checkedProperty = "";
-    if (listValueL == selectedValuesL) {
-      checkedProperty = "checked";
-    }
-    let checkboxElement = `
-    <label>
-      <input type="checkbox" name="language" id="language" value="${listValueL}" ${checkedProperty}>
-      ${listValueL}
-    </label>
-  `;
-    return new hbs.SafeString(checkboxElement);
-  }
-);
-
-// import hbs template engine to expand it with custom helper
-//HOST HELPER (CREATES OPTION VALUE FROM HOST MODEL)
+//HOST HELPER (CREATES OPTION VALUE FOR HOST & LANGUAGE MODEL)
 hbs.registerHelper("createOptionElement", (listValue, selectedValue) => {
   let selectedProperty = ""; //empty by default
   if (listValue == selectedValue) {

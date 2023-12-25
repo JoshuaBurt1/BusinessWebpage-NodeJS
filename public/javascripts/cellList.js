@@ -4,24 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const updateCells = document.querySelectorAll("#td2");
 
   //LANGUAGE COLUMN
-  // languageCells.forEach((cell) => {
-  //   const languageText = cell.querySelector("#cellList").textContent;
-  //   const languageList = document.createElement("ul");
-  //   cell.appendChild(languageList);
+  languageCells.forEach((cell) => {
+    const languageText = cell.querySelector("#cellList").textContent;
+    const languageList = document.createElement("ul");
+    languageList.classList.add("languageListStyle");
+    cell.appendChild(languageList);
 
-  //   // Split the issueText into separate items
-  //   const languageItems = languageText.split(".");
-  //   //console.log(issueItems);
+    const languageItems = languageText.split(",");
 
-  //   languageItems.forEach((item) => {
-  //     const listItem = document.createElement("li");
-  //     listItem.textContent = item;
-  //     languageList.appendChild(listItem);
-  //   });
+    languageItems.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      languageList.appendChild(listItem);
+    }); 
 
-  //   // Remove the original #cellList as it's now replaced by the new <ul>
-  //   cell.removeChild(cell.querySelector("#cellList"));
-  // });
+    cell.removeChild(cell.querySelector("#cellList"));
+  });
 
   //ISSUE COLUMN
   issueCells.forEach((cell) => {

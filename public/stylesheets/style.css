@@ -65,6 +65,10 @@ fieldset hr {
   list-style-type: none;
 }
 
+.languageListStyle {
+  list-style-type: circle;
+}
+
 #langDiv {
   display: flex;
   justify-content: center;

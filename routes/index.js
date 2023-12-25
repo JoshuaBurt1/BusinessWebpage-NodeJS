@@ -89,11 +89,4 @@ router.get("/analytics", (req, res, next) => {
   res.render("analytics", { title: "Analytics", user: req.user });
 });
 
-// GET handler for /contacts
-router.get("/test/index", (req, res, next) => {
-  res.render("index", { title: "Testing" });
-});
-
-
-
 module.exports = router;

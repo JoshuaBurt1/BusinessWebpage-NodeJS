@@ -41,38 +41,6 @@ router.get("/", (req, res, next) => {
     });
 });
 
-//note: NEED TO COMBINE THESE 2 FUNCTIONS TO RENDER ASYNCHRONOUSLY (see below)
-// //GET handler for index /projects/add
-// router.get("/add", (req, res, next) => {
-//   //res.render("projects/add", { title: "Add a New Project" });
-//   Language.find()
-//     .then((languageList) => {
-//       res.render("projects/add", {
-//         title: "Add a new Project",
-//         languages: languageList,
-//         user: req.user,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-// //GET handler for index /projects/add
-// router.get("/add", (req, res, next) => {
-//   //res.render("projects/add", { title: "Add a New Project" });
-//   Host.find()
-//     .then((hostList) => {
-//       res.render("projects/add", {
-//         title: "Add a new Project",
-//         hosting: hostList,
-//         user: req.user,
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
 router.get("/add", IsLoggedIn, async (req, res, next) => {
   try {
     const [languageList, hostList] = await Promise.all([
@@ -138,45 +106,6 @@ router.post("/add", (req, res, next) => {
   );
 });
 
-//note: NEED TO COMBINE THESE 2 FUNCTIONS TO RENDER ASYNCHRONOUSLY (see below)
-//TODO U > Update given project
-// GET /projects/edit/ID
-// router.get("/edit/:_id", (req, res, next) => {
-//   Project.findById(req.params._id)
-//     .then((projectObj) =>
-//       Language.find().then((languageList) => ({ projectObj, languageList }))
-//     )
-//     .then(({ projectObj, languageList }) => {
-//       res.render("projects/edit", {
-//         title: "Edit a Project",
-//         project: projectObj,
-//         languages: languageList,
-//         user: req.user,
-//       });
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// });
-// // GET /projects/edit/ID
-// router.get("/edit/:_id", (req, res, next) => {
-//   Project.findById(req.params._id)
-//     .then((projectObj) =>
-//       Host.find().then((hostList) => ({ projectObj, hostList }))
-//     )
-//     .then(({ projectObj, hostList }) => {
-//       res.render("projects/edit", {
-//         title: "Edit a Project",
-//         project: projectObj,
-//         hosting: hostList,
-//         user: req.user,
-//       });
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//     });
-// });
-
 router.get("/edit/:_id", IsLoggedIn, async (req, res, next) => {
   try {
     const projectObj = await Project.findById(req.params._id).exec();
@@ -193,7 +122,6 @@ router.get("/edit/:_id", IsLoggedIn, async (req, res, next) => {
     });
   } catch (err) {
     console.error(err);
-    // Handle the error appropriately
   }
 });
 
@@ -216,8 +144,6 @@ router.post("/edit/:_id", (req, res, next) => {
       res.redirect("/projects");
     })
     .catch((err) => {
-      // handle any potential errors here
-      // For example, you can redirect to an error page
       res.redirect("/error");
     });
 });

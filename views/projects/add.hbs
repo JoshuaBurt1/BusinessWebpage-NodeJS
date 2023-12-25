@@ -26,10 +26,12 @@
   </fieldset>
   {{!}}
   <fieldset class="form-group">
-    <label for="language">Languages:</label>
+    <label for="language" class="col-2">Languages:</label>
+    <select name="language" id="language" class="form-control" multiple>
     {{#each languages}}
-      {{createCheckboxElement this.name ../project.language}}
+      {{createOptionElement this.name ../project.language}}
     {{/each}}
+    </select>
 </fieldset> 
 
   <fieldset class="form-group">

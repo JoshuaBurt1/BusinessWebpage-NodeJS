@@ -26,23 +26,23 @@
   </fieldset>
   
   <fieldset class="form-group">
-    <label for="language">Languages:</label>
+    <label for="language" class="col-2">Languages:</label>
+    <select name="language" id="language" class="form-control" multiple>
     {{#each languages}}
-      {{createCheckboxElement this.name ../project.language}}
+      {{createOptionElement this.name ../project.language}}
     {{/each}}
-  </fieldset> 
-  
+    </select>
+</fieldset> 
+
   <fieldset class="form-group">
     <label for="host" class="col-2">Hosting:</label>
-    {{!<input name="host" id="host" required />}}
     <select name="host" id="host" class="form-control">
-      {{!<option>AWS</option>}}
       {{#each hosting}}
-      {{!<option>{{this.name}/}</option>}}
         {{createOptionElement this.name ../project.host}}
       {{/each}}
     </select>
   </fieldset>
+
   <fieldset class="form-group">
     {{!Dropdown for Status }}
     <label for="status" class="col-2">Status:</label>
