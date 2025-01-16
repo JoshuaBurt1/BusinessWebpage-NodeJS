@@ -1,4 +1,6 @@
 //1. EXPRESS
+require("dotenv").config();
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -16,8 +18,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //2. DATABASE MongoDB CONNECTIONS
 // Option 2) Add connection string to Config file
-const config = require("./config/globals");
-let connectionString = config.db;
+//const config = require("./config/globals");
+//let connectionString = config.db;
+const db_config = process.env.DB_STRING;
+let connectionString = db_config;
 var mongoose = require("mongoose");
 //Configure mongoose (initial database connection)
 mongoose
@@ -57,9 +61,12 @@ passport.use(
   new githubStrategy(
     // options object
     {
-      clientID: config.github.clientId,
-      clientSecret: config.github.clientSecret,
-      callbackURL: config.github.callbackUrl,
+      //clientID: config.github.clientId,
+      //clientSecret: config.github.clientSecret,
+      //callbackURL: config.github.callbackUrl,
+      clientID: process.env.GITHUB_CLIENTID,
+      clientSecret: process.env.GITHUB_CLIENTSECRET,
+      callbackURL: process.env.GITHUB_CALLBACKURL,
     },
     // create async callback function
     // profile is github profile

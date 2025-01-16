@@ -1,6 +1,6 @@
-# Business Webpage - Essentials Software
+# Business Webpage - Essential Software
 *Tracks current projects <br>
-https://essentialsoftware1.azurewebsites.net/
+https://essential-software.onrender.com
 
 # To Start: <br>
 Download zip, open in code editor <br>
